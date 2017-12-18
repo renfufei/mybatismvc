@@ -112,4 +112,127 @@
 试着用用吧!
 
 
+创建数据库:
+
+![](02_19_heidi_create_db.png)
+
+鼠标右键点击会话名称, 选择菜单项 "创建新的 --> 数据库".
+
+弹出新建数据库对话框:
+
+![](02_20_heidi_create_db_name.png)
+
+填写数据库名称, 例如 `mybatismvc`, 选择字符集, 如 `utf8_general_ci`, 完成之后点击确定。
+
+在MySQL中, 字符集伴随着排序规则(COLLATE), `utf8_general_ci` 的意思是: "UTF8" 编码, 常规字符集(general), 排序和比较时不区分大小写(ci, case insensitive)。
+
+对应的数据库定义SQL如下所示:
+
+```
+CREATE DATABASE `mybatismvc`  COLLATE 'utf8_general_ci';
+```
+
+> 说明, DDL（Data Definition Language）,数据库定义语言, 常用的关键字如 , 
+> 常用的包括 建库,建表,建索引等等,关键字包括 创建(`CREATE`), 删表/库(`DROP`), 改表(`ALTER`), 查看(`SHOW`)等等, 详情请参考: <https://mariadb.com/kb/en/library/data-definition/>。
+> 另外, DML 用于对表中的数据进行增删改查。包括, 插入(`INSERT`), 更新(`UPDATE`), 删除(`DELETE`), 查询(`SELECT`) 等。
+> 可以看到, DDL 和 DML 的关键字是两套, 区分度很强。
+
+创建完成之后, HeidiSQL客户端会自动刷新界面。
+
+![](02_21_show_db.png)
+
+可以在左侧列表中看到我们新创建的数据库。
+
+根据上图提示, 打开一个新的查询标签, 在其中可以输入SQL, 然后点击执行按钮(蓝色的三角形箭头)即可。
+
+显示所有可见数据库的SQL如下:
+
+```
+show databases;
+```
+
+创建表:
+
+![](02_22_create_table_01.png)
+
+鼠标选择数据库, 如 `mybatismvc`, 点鼠标右键, 选择菜单项 "创建新的 --> 表".
+
+HeidiSQL界面下方展示的SQL日志为:
+
+```
+USE mybatismvc;
+```
+
+![](02_23_table_field.png)
+
+输入表名, 注释; 
+
+点击 "+添加" 按钮可以增加字段, 填写字段名称, 数据类型, 长度, 非空,以及注释信息。
+
+完成之后点击 "保存" 按钮。
+
+日志信息中可以看到, 对应的建表语句如下:
+
+```
+CREATE TABLE `sys_manage_user` (
+    `id` BIGINT UNSIGNED NOT NULL COMMENT '自增ID',
+    `username` VARCHAR(36) NOT NULL COMMENT '用户名',
+    `password` VARCHAR(36) NULL COMMENT '密码'
+)
+COMMENT='管理员用户表'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+```
+
+添加主键:
+
+![](02_24_primary_key.png)
+
+鼠标右键单击 id 字段, 选择 "创建新索引 -- > PRIMARY",  然后点击 "保存" 按钮。
+
+对应的 SQL 如下所示:
+
+```
+ALTER TABLE `sys_manage_user`
+	ADD PRIMARY KEY (`id`);
+```
+
+设置主键自增长:
+
+> **MySQL限制**: AUTO_INCREMENT 只能在 主键或者唯一索引列中设置。
+
+![](02_25_aoto_increment.png)
+
+选择 id 这一字段,  点击 "默认" 部分, 在弹出界面中选择 "AUTO_INCREMENT", 然后点击 "确定" 按钮, 完成后保存。
+
+对应的SQL如下:
+
+```
+ALTER TABLE `sys_manage_user`
+	CHANGE COLUMN `id` `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增ID' FIRST;
+```
+
+当然, 添加主键 和设置自增长这两个步骤,可以和建表一起完成。 此处为了演示而拆分为3个步骤。
+
+完整的SQL可以在 "CREATE代码" 中查看:
+
+![](02_26_create_code.png)
+
+完整的SQL代码如下所示:
+
+```
+CREATE TABLE `sys_manage_user` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+	`username` VARCHAR(36) NOT NULL COMMENT '用户名',
+	`password` VARCHAR(36) NULL DEFAULT NULL COMMENT '密码',
+	PRIMARY KEY (`id`)
+)
+COMMENT='管理员用户表'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+```
+
+
 
