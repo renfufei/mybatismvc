@@ -11,7 +11,7 @@ Maven是Java项目构建事实上的标准, 稍微正规点的Java项目, 基本
 
 ![](03_01_maven_org.png)
 
-找到并点击 Download 菜单,
+找到并点击 [Download 菜单](https://maven.apache.org/download.cgi),
 
 ![](03_02_maven_site.png)
 
@@ -25,6 +25,15 @@ Windows 一般使用 zip 包, Linux 一般使用 tar.gz 压缩包.
 通过链接下载对应的文件, 如 [apache-maven-3.5.2-bin.zip](http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip).
 
 请注意区分, 我们需要下载的是 bin 而不是 src。
+
+如果是Linux, 使用 `wget` 获取 tar.gz 文件即可, 如:
+
+```
+wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz -O apache-maven-3.5.2-bin.tar.gz
+```
+
+其中, `-O` 参数指定输出文件名, 用于应付不规则的复杂URL。
+
 
 下载完成之后, 可以看到是大约8MB左右的文件。
 

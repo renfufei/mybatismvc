@@ -21,7 +21,16 @@ Windows 一般使用 zip 包, Linux 一般使用 tar.gz 压缩包.
 
 请注意区分, 我们需要下载的是 bin 而不是 src。
 
-下载完成之后, 可以看到是大约 10.5MB 左右的文件。
+如果是Linux, 使用 `wget` 获取 tar.gz 文件即可, 如:
+
+```
+wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz -O apache-tomcat-8.0.48.tar.gz
+```
+
+其中, `-O` 参数指定输出文件名, 用于应付不规则的复杂URL。
+
+
+下载完成之后, 可以看到是大约 10MB 左右的文件。
 
 ![](04_03_tomcat_zip.png)
 
