@@ -186,7 +186,7 @@ System.out.println("简单的Hello-World宣布出世!");
 Process finished with exit code 0
 ```
 
-已存在的.java源文件的转码, 可以使用其他文本编辑器打开, 使用 "另存为/选择编码" 的方式来处理。
+转码已存在的.java源文件, 可以使用其他文本编辑器打开, 使用 "另存为/选择编码" 的方式来处理。 如 EditPlus, UltraEdit等。
 
 
 至此, 基本的Idea安装完成。
